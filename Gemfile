@@ -77,6 +77,6 @@ group :test do
   gem "webdrivers"
 end
 
-group :development_sonia do
-  ruby "2.7.7"
-end
+#group :development_sonia do
+#  ruby "2.7.7"
+#end
