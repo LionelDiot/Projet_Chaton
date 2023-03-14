@@ -12,14 +12,14 @@
   </head>
 
   <body>
+  
+    <%= render 'layouts/navbar' %>
 
-    <%# render 'header' %>
 
-    <main>
-      <%= yield %>
-    </main>
+    <%= yield %>
 
-    <%# render 'footer' %>
+
+    <%= render 'layouts/footer' %>
     
   </body>
 </html>
