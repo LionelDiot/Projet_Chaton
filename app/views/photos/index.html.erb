@@ -1,14 +1,14 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Photos</h1>
+<div class="album py-5">
+  <div class="container">
 
-<div id="photos">
-  <% @photos.each do |photo| %>
-    <%= render photo %>
-    <p>
-      <%= link_to "Show this photo", photo %>
-    </p>
-  <% end %>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+      <% @photos.each do |photo| %>
+        <%= render photo %>
+      <% end %>
+      </div>
+    </div>
+
+  </div>
 </div>
-
-<%= link_to "New photo", new_photo_path %>
