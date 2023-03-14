@@ -8,8 +8,12 @@
       <div class="d-flex justify-content-between align-items-center">
         <strong class="text-secondary"><%= photo.price %>&nbsp;€</strong>
         <div class="btn-group">
-          <%= render partial: "/shared/buttons/view", locals: { custom_classes: 'btn-sm btn-outline-primary' } %>
-          <%= render partial: "/shared/buttons/add_to_cart", locals: { custom_classes: 'btn-sm btn-outline-primary' } %>
+        <%= link_to root_path, class: "btn btn-sm btn-outline-primary" do %>
+          <%= render "/shared/buttons/view" %>
+        <% end %>
+        <%= link_to root_path, class: "btn btn-sm btn-outline-primary" do %>
+          <%= render "/shared/buttons/add_to_cart" %>
+        <% end %>
         </div>
       </div>
     </div>
