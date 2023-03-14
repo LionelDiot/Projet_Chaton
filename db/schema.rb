@@ -10,9 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_13_150502) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_13_180812) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "carts", force: :cascade do |t|
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_carts_on_user_id"
+  end
+
+  create_table "photos", force: :cascade do |t|
+    t.string "title"
+    t.string "description"
+    t.string "image_url"
+    t.string "dimension"
+    t.float "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "selections", force: :cascade do |t|
+    t.bigint "photo_id"
+    t.bigint "cart_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cart_id"], name: "index_selections_on_cart_id"
+    t.index ["photo_id"], name: "index_selections_on_photo_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
