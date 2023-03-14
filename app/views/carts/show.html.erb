@@ -3,8 +3,19 @@
 <%= render @cart %>
 
 <div>
-  <%= link_to "Edit this cart", edit_cart_path(@cart) %> |
-  <%= link_to "Back to carts", carts_path %>
+<% if @cart.photos.any? %>
+  <ul>
+    <% @cart.photos.each do |photo| %>
+      <li>
+        <h3><%= photo.title %></h3>
+        <p><%= photo.description %></p>
+        <p>Prix : <%= photo.price %> €</p>
+      </li>
+    <% end %>
+  </ul>
 
-  <%= button_to "Destroy this cart", @cart, method: :delete %>
+  <%= link_to "Passer la commande", class: "btn btn-primary" %>
+<% else %>
+  <p>Votre panier est vide.</p>
+<% end %>
 </div>
