@@ -5,6 +5,6 @@
 <div>
   <%= link_to "Edit this photo", edit_photo_path(@photo) %> |
   <%= link_to "Back to photos", photos_path %>
+  <%= button_to "Ajouter au panier", add_to_cart_path(id: @photo.id), class: "btn btn-primary"%>
 
-  <%= button_to "Destroy this photo", @photo, method: :delete %>
 </div>

@@ -6,8 +6,17 @@ class CartsController < ApplicationController
     @carts = Cart.all
   end
 
+  def add_to_cart
+    @photo = Photo.find(params[:id])
+    @cart = Cart.find_or_create_by(user_id: current_user.id)
+    @cart.add_photo_to_cart(@photo)
+
+    redirect_to photos_path, notice: "Photo ajoutée au panier"
+  end
+
   # GET /carts/1 or /carts/1.json
   def show
+    @cart = Cart.find_by(user_id: current_user.id)
   end
 
   # GET /carts/new
@@ -21,7 +30,7 @@ class CartsController < ApplicationController
 
   # POST /carts or /carts.json
   def create
-    @cart = Cart.new(cart_params)
+    @cart = Cart.create(user_id: current_user.id)
 
     respond_to do |format|
       if @cart.save
