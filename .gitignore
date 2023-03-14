@@ -6,7 +6,7 @@
 
 # Ignore bundler config.
 /.bundle
-Gemfile.lock
+
 .ruby-version
 
 # Ignore all logfiles and tempfiles.
