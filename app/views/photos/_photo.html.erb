@@ -1,24 +1,9 @@
-<div id="<%= dom_id photo %>">
-  <p>
-    <strong>Price:</strong>
-    <%= photo.price %>
-  </p>
-
-  <p>
-    <strong>Title:</strong>
-    <%= photo.title %>
-  </p>
-
-  <p>
-    <strong>Description:</strong>
-    <%= photo.description %>
-  </p>
-
-  <p>
-    <strong>Url:</strong>
-    <p>
-    <img src="<%= photo.image_url %>" alt="<%= photo.title %>">
-    </p>
-  </p>
-
+<div id="<%= dom_id photo %>" class="card">
+  <img src="<%= photo.image_url %>" alt="<%= photo.title %>" class="card-img-top">
+  <div class="card-body">
+    <h5 class="card-title"><%= photo.title %></h5>
+    <p class="card-text"><%= photo.description %></p>
+    <p class="card-text"><%= photo.price %></p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
 </div>
