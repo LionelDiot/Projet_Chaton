@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   resources :users
   root 'photos#index'
   post 'add_to_cart', to: 'carts#add_to_cart', as: 'add_to_cart'
+  post 'delete_photo', to: 'photos#delete_photo', as: 'delete_photo'
+
 
   scope '/checkout' do
     post 'create', to: 'checkout#create', as: 'checkout_create'
