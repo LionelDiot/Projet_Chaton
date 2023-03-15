@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[ show edit update destroy ]
-
+  before_action :owner?, only: [:destroy, :edit, :update]
   # GET /users or /users.json
   def index
     @users = User.all
@@ -66,5 +66,13 @@ class UsersController < ApplicationController
     # Only allow a list of trusted parameters through.
     def user_params
       params.require(:user).permit(:encrypted_password, :email, :first_name, :last_name, :cart_id)
+    end
+
+    def owner?
+      @user = set_user
+      unless current_user == @user
+        flash[:danger] = "Impossible vous n'êtes pas le propriétaire du compte !"
+        redirect_to "/"
+      end
     end
 end

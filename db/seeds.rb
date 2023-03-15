@@ -27,9 +27,7 @@ users = []
     last_name: Faker::Name.last_name,
     password: Faker::Internet.password
   )
-  Cart.create!(
-    user_id: users[i].id
-  )
+  
 end
 puts users
 

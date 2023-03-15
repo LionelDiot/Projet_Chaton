@@ -1,6 +1,6 @@
 class CartsController < ApplicationController
   before_action :set_cart, only: %i[ show edit update destroy ]
-
+  before_action :owner?, only: [:show, :destroy, :edit, :update]
   # GET /carts or /carts.json
   def index
     @carts = Cart.all
@@ -76,4 +76,13 @@ class CartsController < ApplicationController
     def cart_params
       params.fetch(:cart, {})
     end
+
+    def owner?
+      @cart = set_cart
+      unless current_user.id == @cart.user_id
+        flash[:danger] = "Impossible vous n'êtes pas le propriétaire de ce panier !"
+        redirect_to "/"
+      end
+    end
+  
 end
