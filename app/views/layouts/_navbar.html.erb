@@ -20,7 +20,7 @@
             </li>
           <% else %>
               <li class="nav-item active ">
-                <%= link_to "Mon panier", user_path(current_user), class: "nav-link" %>
+                <%= link_to "Mon panier", cart_path(current_user.cart), class: "nav-link" %>
               </li>
               <li class="nav-item active ">
                 <%= link_to "Mon profil", user_path(current_user), class: "nav-link" %>
