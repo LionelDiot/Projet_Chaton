@@ -13,7 +13,7 @@
         <%= link_to photo_path(id: photo.id), class: "btn btn-sm btn-outline-primary" do %>
           <%= render "/shared/buttons/view" %>
         <% end %>
-        <%= link_to delete_photo_path(id: photo.id), data: {turbo_method: :post, turbo_frame: 'photo'}, class: "btn btn-sm btn-outline-primary" do %>
+        <%= button_to delete_photo_path(id: photo.id), data: {turbo_method: :delete, turbo_frame: 'photo'}, class: "btn btn-sm btn-outline-primary" do %>
 
           <%= render "/shared/buttons/delete" %>
         <% end %>
