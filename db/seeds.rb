@@ -27,6 +27,9 @@ users = []
     last_name: Faker::Name.last_name,
     password: Faker::Internet.password
   )
+  Cart.create!(
+    user_id: users[i].id
+  )
 end
 puts users
 
@@ -42,11 +45,7 @@ photos = []
 end
 puts photos
 
-3.times do |i|
-  Cart.create!(
-    user_id: User.all.sample.id
-  )
-end
+
 
 10.times do |i|
   Selection.create!(
