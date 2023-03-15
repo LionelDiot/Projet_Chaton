@@ -1,2 +1,8 @@
-<div id="<%= dom_id cart %>">
-</div>
+<ul class="list-group list-group-flush m-4">
+  <%= render partial: "photos/photo_row", collection: @cart.photos, as: :photo %>
+
+  <li href="#" class="list-group-item d-flex gap-3 py-3 justify-content-between">
+    <p class="mb-0">Total de la commande :</p>
+    <strong class="text-nowrap">00,00&nbsp;€</strong>
+  </li>
+</ul>

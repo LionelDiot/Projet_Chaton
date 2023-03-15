@@ -5,11 +5,15 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_one :cart, dependent: :destroy
 
-  after_create :create_cart
+  after_create :create_cart, :welcome_send
 
   def create_cart
     Cart.create!(
       user_id: self.id
     )
+  end
+
+  def welcome_send
+    UserMailer.welcome_email(self).deliver_now
   end
 end
