@@ -1,21 +1,12 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @cart %>
-
-<div>
-<% if @cart.photos.any? %>
-  <ul>
-    <% @cart.photos.each do |photo| %>
-      <li>
-        <h3><%= photo.title %></h3>
-        <p><%= photo.description %></p>
-        <p>Prix : <%= photo.price %> €</p>
-      </li>
+<div class="container w-50 d-flex flex-column justify-content-start align-items-center">
+  <% if @cart.photos.any? %>
+    <%= render @cart %>
+    <%= link_to root_path, class: "btn btn-sm btn-outline-primary object-fit-contain" do %>
+      <%= render "/shared/buttons/confirm_order" %>
     <% end %>
-  </ul>
-
-  <%= link_to "Passer la commande", class: "btn btn-primary" %>
-<% else %>
-  <p>Votre panier est vide.</p>
-<% end %>
+  <% else %>
+    <%= render "empty_cart" %>
+  <% end %>
 </div>

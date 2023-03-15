@@ -12,7 +12,6 @@
           <%= render "/shared/buttons/view" %>
         <% end %>
         <%= link_to add_to_cart_path(id: photo.id), data:{turbo_method: :post}, class: "btn btn-sm btn-outline-primary" do %>
-        
           <%= render "/shared/buttons/add_to_cart" %>
         <% end %>
         </div>
