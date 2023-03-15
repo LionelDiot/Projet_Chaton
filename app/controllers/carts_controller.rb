@@ -8,6 +8,7 @@ class CartsController < ApplicationController
   end
 
   def add_to_cart
+<<<<<<< HEAD
     if user_signed_in?
       @photo = Photo.find(params[:id])
       @cart = Cart.find_or_create_by(user_id: current_user.id)
@@ -19,6 +20,13 @@ class CartsController < ApplicationController
 
       redirect_to new_user_session_path
     end
+=======
+    @photo = Photo.find(params[:id])
+    @cart = Cart.find_or_create_by(user_id: current_user.id)
+    @cart.add_photo_to_cart(@photo)
+    
+    redirect_to photos_path, notice: "Photo ajoutée au panier"
+>>>>>>> development
   end
 
   # GET /carts/1 or /carts/1.json

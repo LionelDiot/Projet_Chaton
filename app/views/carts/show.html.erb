@@ -1,12 +1,15 @@
 <p style="color: green"><%= notice %></p>
 
+
 <div class="container w-50 d-flex flex-column justify-content-start align-items-center">
   <% if @cart.photos.any? %>
     <%= render @cart %>
-    <%= link_to root_path, class: "btn btn-sm btn-outline-primary object-fit-contain" do %>
+    
+    <%= button_to checkout_create_path(total: @cart.total), class: "btn btn-sm btn-outline-primary object-fit-contain", remote: true , data: { turbo: "false" } do %>
       <%= render "/shared/buttons/confirm_order" %>
     <% end %>
   <% else %>
     <%= render "empty_cart" %>
   <% end %>
+
 </div>
