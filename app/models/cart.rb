@@ -6,8 +6,9 @@ class Cart < ApplicationRecord
 
   def add_photo_to_cart(photo)
     self.photos << photo
-    self.total = self.total + photo.price 
-    save
   end
   
+
+
+
 end

@@ -3,7 +3,7 @@
 
   <li href="#" class="list-group-item d-flex gap-3 py-3 justify-content-between">
     <p class="mb-0">Total de la commande :</p>
-    <strong class="text-nowrap"><%= number_to_currency(@cart.total, unit: "€", separator: ",", delimiter: "", format: "%n %u") %></strong>
+    <strong class="text-nowrap"><%= number_to_currency(@total_price_cart, unit: "€", separator: ",", delimiter: "", format: "%n %u") %></strong>
     
   </li>
 </ul>

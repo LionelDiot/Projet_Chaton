@@ -1,17 +1,17 @@
 class CartsController < ApplicationController
   before_action :set_cart, only: %i[ show edit update destroy ]
   before_action :owner?, only: [:show, :destroy, :edit, :update]
+  before_action :total_of_cart
 
   # GET /carts or /carts.json
   def index
     @carts = Cart.all
   end
 
+
   def add_to_cart
-<<<<<<< HEAD
     if user_signed_in?
       @photo = Photo.find(params[:id])
-      @cart = Cart.find_or_create_by(user_id: current_user.id)
       @cart.add_photo_to_cart(@photo)
       redirect_to photos_path, notice: "Photo ajoutée au panier"
     else
@@ -20,13 +20,15 @@ class CartsController < ApplicationController
 
       redirect_to new_user_session_path
     end
-=======
-    @photo = Photo.find(params[:id])
+  end
+
+  def total_of_cart
     @cart = Cart.find_or_create_by(user_id: current_user.id)
-    @cart.add_photo_to_cart(@photo)
-    
-    redirect_to photos_path, notice: "Photo ajoutée au panier"
->>>>>>> development
+    @total_price_cart = 0
+    @cart.photos.each do |photo|
+      @total_price_cart += photo.price
+    end
+    return @total_price_cart
   end
 
   # GET /carts/1 or /carts/1.json
