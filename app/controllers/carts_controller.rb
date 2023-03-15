@@ -1,17 +1,24 @@
 class CartsController < ApplicationController
   before_action :set_cart, only: %i[ show edit update destroy ]
   before_action :owner?, only: [:show, :destroy, :edit, :update]
+
   # GET /carts or /carts.json
   def index
     @carts = Cart.all
   end
 
   def add_to_cart
-    @photo = Photo.find(params[:id])
-    @cart = Cart.find_or_create_by(user_id: current_user.id)
-    @cart.add_photo_to_cart(@photo)
+    if user_signed_in?
+      @photo = Photo.find(params[:id])
+      @cart = Cart.find_or_create_by(user_id: current_user.id)
+      @cart.add_photo_to_cart(@photo)
+      redirect_to photos_path, notice: "Photo ajoutée au panier"
+    else
+      # session[:cart] ||= {}
+      # session[:cart][:pending_photo] = photo_params
 
-    redirect_to photos_path, notice: "Photo ajoutée au panier"
+      redirect_to new_user_session_path
+    end
   end
 
   # GET /carts/1 or /carts/1.json
@@ -83,6 +90,10 @@ class CartsController < ApplicationController
         flash[:danger] = "Impossible vous n'êtes pas le propriétaire de ce panier !"
         redirect_to "/"
       end
+    end
+
+    def photo_params
+      params.require(:photo).permit(:id)
     end
   
 end
