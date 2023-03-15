@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html>
   <head>
     <title>Boutique Chaton</title>
@@ -12,18 +12,19 @@
     <script src="https://js.stripe.com/v3/"></script>
   </head>
 
-  <body>
+ <body>
     
+    <div class="wrapper sticky-footer">
     <%= render 'layouts/navbar' %>
-    
     <% flash.each do |key, value| %>
-          <div class="alert alert-<%= key %>">
-            <%= value %>
-          </div>
-        <% end %>  
+      <div class="alert alert-<%= key %>">
+        <%= value %>
+      </div>
+    <% end %>  
     <%= yield %>
-    
     <%= render 'layouts/footer' %>
+  </div>
     
   </body>
 </html>
+ 
