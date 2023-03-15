@@ -8,5 +8,5 @@ class Cart < ApplicationRecord
     self.total = self.total + photo.price 
     save
   end
-
+  
 end
