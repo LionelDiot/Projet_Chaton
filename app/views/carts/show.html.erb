@@ -9,12 +9,12 @@
       <li>
         <h3><%= photo.title %></h3>
         <p><%= photo.description %></p>
-        <p>Prix : <%= photo.price %> €</p>
+        <p>Prix : <%= number_to_currency(photo.price, unit: "€", separator: ",", delimiter: "", format: "%n %u") %></p>
       </li>
     <% end %>
   </ul>
-
-  <%= link_to "Passer la commande", class: "btn btn-primary" %>
+  Votre total est de : <%= number_to_currency(@cart.total, unit: "€", separator: ",", delimiter: "", format: "%n %u") %>
+  <%= button_to "Passer la commande ", checkout_create_path(total: @cart.total), class: "btn btn-primary my-2", remote: true %>
 <% else %>
   <p>Votre panier est vide.</p>
 <% end %>

@@ -8,6 +8,8 @@ gem 'faker'
 gem 'rspec'
 gem 'dotenv'
 gem 'devise'
+gem 'stripe', "~> 5.53"
+
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.4", ">= 7.0.4.2"
