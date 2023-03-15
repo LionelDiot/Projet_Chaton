@@ -10,7 +10,7 @@ class CartsController < ApplicationController
     @photo = Photo.find(params[:id])
     @cart = Cart.find_or_create_by(user_id: current_user.id)
     @cart.add_photo_to_cart(@photo)
-
+    
     redirect_to photos_path, notice: "Photo ajoutée au panier"
   end
 
