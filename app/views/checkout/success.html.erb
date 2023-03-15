@@ -1,3 +1,1 @@
-<h1> Votre paiement de <%= number_to_currency(@payment_intent.amount_received / 100.0, unit: "€", separator: ",", delimiter: "", format: "%n %u") %> a été un succès ! </h1>
-<P>Votre commande et votre facture vous seront envoyées par email dans les plus brefs délais. </p>
-<% link_to " Retour à la page d'acceuil ", root_path, class="btn btn-primary" %>
+<div class="container text-center my-5"> <h1>Succès</h1> <p>Nous avons bien reçu votre paiement de <%= number_to_currency(@payment_intent.amount_received / 100.0, unit: "€", separator: ",", delimiter: "", format: "%n %u") %>.</p> <p>Le statut de votre paiement est : <%= @payment_intent.status %>.</p> </div> 

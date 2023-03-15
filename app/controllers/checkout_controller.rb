@@ -18,19 +18,17 @@ class CheckoutController < ApplicationController
       success_url: checkout_success_url + '?session_id={CHECKOUT_SESSION_ID}',
       cancel_url: checkout_cancel_url
     )
-    respond_to do |format|
-      
-      format.js # renders create.js.erb
-    end
+    
+    redirect_to @session.url, allow_other_host: true
   end
 
   def success
-    @session = Strip::Checkout::Session.retrieve(params[:session_id])
+    @session = Stripe::Checkout::Session.retrieve(params[:session_id])
     @payment_intent = Stripe::PaymentIntent.retrieve(@session.payment_intent)
   end
 
   def cancel
-    @session = Strip::Checkout::Session.retrieve(params[:session_id])
+    @session = Stripe::Checkout::Session.retrieve(params[:session_id])
     @payment_intent = Stripe::PaymentIntent.retrieve(@session.payment_intent)
   end
 end

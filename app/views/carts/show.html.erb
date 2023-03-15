@@ -14,7 +14,7 @@
     <% end %>
   </ul>
   Votre total est de : <%= number_to_currency(@cart.total, unit: "€", separator: ",", delimiter: "", format: "%n %u") %>
-  <%= button_to "Passer la commande ", checkout_create_path(total: @cart.total), class: "btn btn-primary my-2", remote: true %>
+  <%= button_to "Passer la commande ", checkout_create_path(total: @cart.total), class: "btn btn-primary my-2", remote: true , data: { turbo: "false" } %>
 <% else %>
   <p>Votre panier est vide.</p>
 <% end %>
