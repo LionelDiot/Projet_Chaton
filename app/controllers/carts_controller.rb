@@ -14,6 +14,7 @@ class CartsController < ApplicationController
     @photo = Photo.find(params[:id])
 
     if user_signed_in?
+      @cart = Cart.find_by(user_id: current_user.id)
       @cart.add_photo_to_cart(@photo)
       redirect_to photos_path, notice: "Photo ajoutée au panier"
     else
@@ -89,7 +90,7 @@ class CartsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_cart
-      @cart = Cart.find_or_create_by(user_id: current_user.id)
+      @cart = Cart.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
