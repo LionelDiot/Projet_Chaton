@@ -1,17 +1,38 @@
 class CartsController < ApplicationController
-  before_action :set_cart, only: %i[ show edit update destroy ]
+  before_action :set_cart, only: %i[ show edit update destroy add_to_cart]
   before_action :owner?, only: [:show, :destroy, :edit, :update]
+  before_action :total_of_cart, only: [:show]
+  before_action :authenticate_user, only: [:set]
+
   # GET /carts or /carts.json
   def index
     @carts = Cart.all
   end
 
+
   def add_to_cart
     @photo = Photo.find(params[:id])
-    @cart = Cart.find_or_create_by(user_id: current_user.id)
-    @cart.add_photo_to_cart(@photo)
+
+    if user_signed_in?
+      @cart = Cart.find_by(user_id: current_user.id)
+      @cart.add_photo_to_cart(@photo)
+      redirect_to photos_path, notice: "Photo ajoutée au panier"
+    else
+
+      session[:photo] = @photo
+      redirect_to new_user_session_path
+    end
+  end
+
+  def total_of_cart
     
-    redirect_to photos_path, flash: { success: "Photo ajoutée au panier" }
+      @cart = Cart.find_or_create_by(user_id: current_user.id)
+      @total_price_cart = 0
+      @cart.photos.each do |photo|
+        @total_price_cart += photo.price
+      end
+      return @total_price_cart
+    
   end
 
   # GET /carts/1 or /carts/1.json
@@ -79,10 +100,11 @@ class CartsController < ApplicationController
 
     def owner?
       @cart = set_cart
-      unless current_user.id == @cart.user_id
+      unless @cart && current_user && current_user.id == @cart.user_id  
         flash[:danger] = "Impossible vous n'êtes pas le propriétaire de ce panier !"
         redirect_to "/"
       end
     end
+
   
 end
