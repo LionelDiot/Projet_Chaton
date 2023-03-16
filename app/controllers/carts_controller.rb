@@ -2,7 +2,7 @@ class CartsController < ApplicationController
   before_action :set_cart, only: %i[ show edit update destroy add_to_cart]
   before_action :owner?, only: [:show, :destroy, :edit, :update]
   before_action :total_of_cart, only: [:show]
-  before_action :authenticate_user, only: [:set]
+  
 
   # GET /carts or /carts.json
   def index
@@ -89,8 +89,8 @@ class CartsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_cart
-      @cart = Cart.find(params[:id])
+    def set_cart     
+      @cart = Cart.find_by(user_id: current_user.id) if current_user 
     end
 
     # Only allow a list of trusted parameters through.
