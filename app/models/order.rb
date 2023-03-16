@@ -20,7 +20,6 @@ class Order < ApplicationRecord
         self.urls << photo.image_url
         self.titles << photo.title
         self.total = self.total + photo.price 
-        self.total = (self.total).round(2)
     end
 
     def fill_order(cart)    
