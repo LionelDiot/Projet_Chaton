@@ -20,7 +20,7 @@ ActiveRecord::Base.connection.execute("ALTER SEQUENCE users_id_seq RESTART WITH 
 
 
 users = []
-10.times do |i|
+2.times do |i|
   users << User.create!(
     email: Faker::Internet.unique.email,
     first_name: Faker::Name.first_name,

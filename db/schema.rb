@@ -23,8 +23,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_15_173027) do
   end
 
   create_table "orders", force: :cascade do |t|
+    t.bigint "user_id"
+    t.float "total", default: 0.0
+    t.string "urls", default: [], array: true
+    t.string "titles", default: [], array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "photos", force: :cascade do |t|

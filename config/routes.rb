@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :carts
   resources :photos
   resources :users
+  resources :order, only: [:show]
   root 'photos#index'
   post 'add_to_cart', to: 'carts#add_to_cart', as: 'add_to_cart'
 
