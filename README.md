@@ -1,24 +1,14 @@
-# README
+# 🐱 E-boutique Chaton
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Demo
 
-Things you may want to cover:
+- Voir la [demo](https://projet-chaton.herokuapp.com)
+- Voir l'[environnement test](https://projet-chaton-staging.herokuapp.com)
 
-* Ruby version
+## L'équipe
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- Lionel DIOT [@LionelDiot](https://www.github.com/LionelDiot)
+- Zitouni FADILI [@Cyber-Geooorge](https://www.github.com/Cyber-Geooorge)
+- Ghislain GENET [@GGE95](https://www.github.com/GGE95)
+- Sonia PAVAGEAU [@soniapvg](https://www.github.com/soniapvg)
+- Josephine PEAN [@Jo9085](https://www.github.com/Jo9085)
