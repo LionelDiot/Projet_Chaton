@@ -23,7 +23,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_16_151525) do
 
   create_table "orders", force: :cascade do |t|
     t.bigint "user_id"
-    t.float "total", default: 0.0
+    t.decimal "total", default: "0.0"
     t.string "urls", default: [], array: true
     t.string "titles", default: [], array: true
     t.datetime "created_at", null: false
