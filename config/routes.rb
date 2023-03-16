@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  # Alias /carts/:id to /my_cart
-  get '/my_cart', to: 'carts#show', as: :my_cart
+  
 
   resources :carts, except: [:index, :edit, :new, :create, :update, :destroy]
   resources :photos, except: [:edit, :new,:create, :update, :destroy]

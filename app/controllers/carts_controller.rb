@@ -17,10 +17,7 @@ class CartsController < ApplicationController
       @cart.add_photo_to_cart(@photo)
       redirect_to photos_path, notice: "Photo ajoutée au panier"
     else
-      # session[:cart] ||= {}
-      # session[:cart][:pending_photo] = photo_params
 
-      # Store the item information in the session
       session[:photo] = @photo
       redirect_to new_user_session_path
     end
@@ -108,8 +105,5 @@ class CartsController < ApplicationController
       end
     end
 
-    def photo_params
-      params.require(:photo).permit(:id)
-    end
   
 end
