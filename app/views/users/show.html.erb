@@ -1,26 +1,6 @@
 <h1> Mes commandes </h1>
 <div class="container w-75 d-flex flex-column justify-content-start align-items-center">
   <ul class="list-group list-group-flush m-4">
-    <li class="list-group-item d-flex gap-5 py-3 justify-content-between">
-      <div class="text-start">
-        <h6 class="mb-0">Ref. commande</h6>
-        <p class="mb-0 opacity-75">Date de commande : 15/02/2022</p>
-      </div>
-      <strong class="text-nowrap">Total : 100,00 €</strong>
-      <%= link_to '#', class: "btn btn-sm btn-outline-primary  align-self-start" do %>
-        <%= render "/shared/buttons/view" %>
-      <% end %>
-    </li>
-
-    <li class="list-group-item d-flex gap-5 py-3 justify-content-between">
-      <div class="text-start">
-        <h6 class="mb-0">Ref. commande</h6>
-        <p class="mb-0 opacity-75">Date de commande : 15/02/2022</p>
-      </div>
-      <strong class="text-nowrap">Total : 100,00 €</strong>
-      <%= link_to '#', class: "btn btn-sm btn-outline-primary  align-self-start" do %>
-        <%= render "/shared/buttons/view" %>
-      <% end %>
-    </li>
+    <%= render partial: "orders/order_summary", collection: @user.orders, as: :order %>
   </ul>
 </div>
