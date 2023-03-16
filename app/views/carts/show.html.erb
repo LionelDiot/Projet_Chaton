@@ -2,7 +2,7 @@
   <% if @cart.photos.any? %>
     <%= render @cart %>
     
-    <%= button_to checkout_create_path(total: @cart.total), class: "btn btn-sm btn-outline-primary object-fit-contain", remote: true , data: { turbo: "false" } do %>
+    <%= button_to checkout_create_path(total: @total_price_cart), class: "btn btn-sm btn-outline-primary object-fit-contain", remote: true , data: { turbo: "false" } do %>
       <%= render "/shared/buttons/confirm_order" %>
     <% end %>
   <% else %>
