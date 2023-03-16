@@ -11,7 +11,7 @@ class CartsController < ApplicationController
     @cart = Cart.find_or_create_by(user_id: current_user.id)
     @cart.add_photo_to_cart(@photo)
     
-    redirect_to photos_path, notice: "Photo ajoutée au panier"
+    redirect_to photos_path, flash: { success: "Photo ajoutée au panier" }
   end
 
   # GET /carts/1 or /carts/1.json
@@ -47,7 +47,7 @@ class CartsController < ApplicationController
   def update
     respond_to do |format|
       if @cart.update(cart_params)
-        format.html { redirect_to cart_url(@cart), notice: "Cart was successfully updated." }
+        format.html { redirect_to cart_url(@cart), flash: { success: "Votre panier a été mis à jour." } }
         format.json { render :show, status: :ok, location: @cart }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -61,7 +61,7 @@ class CartsController < ApplicationController
     @cart.destroy
 
     respond_to do |format|
-      format.html { redirect_to carts_url, notice: "Cart was successfully destroyed." }
+      format.html { redirect_to carts_url, flash: { success: "La photo a été supprimée de votre panier." } }
       format.json { head :no_content }
     end
   end
