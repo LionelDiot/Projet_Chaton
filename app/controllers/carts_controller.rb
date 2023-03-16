@@ -1,8 +1,9 @@
 class CartsController < ApplicationController
-  before_action :set_cart, only: %i[ show edit update destroy ]
+  before_action :set_cart, only: %i[ show edit update destroy add_to_cart]
   before_action :owner?, only: [:show, :destroy, :edit, :update]
   before_action :total_of_cart, only: [:show]
   before_action :authenticate_user, only: [:set]
+
   # GET /carts or /carts.json
   def index
     @carts = Cart.all
@@ -13,7 +14,7 @@ class CartsController < ApplicationController
     @photo = Photo.find(params[:id])
 
     if user_signed_in?
-      
+      @cart = Cart.find_by(user_id: current_user.id)
       @cart.add_photo_to_cart(@photo)
       redirect_to photos_path, notice: "Photo ajoutée au panier"
     else
@@ -32,7 +33,6 @@ class CartsController < ApplicationController
       end
       return @total_price_cart
     
-    redirect_to photos_path, flash: { success: "Photo ajoutée au panier" }
   end
 
   # GET /carts/1 or /carts/1.json
@@ -90,7 +90,7 @@ class CartsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_cart
-      @cart = Cart.find_by(id: params[:id])
+      @cart = Cart.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
