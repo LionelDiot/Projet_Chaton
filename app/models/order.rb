@@ -20,8 +20,7 @@ class Order < ApplicationRecord
         self.urls << photo.image_url
         self.titles << photo.title
         self.total = self.total + photo.price 
-        puts 'photp1'
-        puts self.total
+        self.total = (self.total).round(2)
     end
 
     def fill_order(cart)    
@@ -29,6 +28,7 @@ class Order < ApplicationRecord
         @cart.photos.each do |photo|
             add_data_to_order(photo)
         end
+        self.total = (self.total).round(2)
         self.save
     end
 

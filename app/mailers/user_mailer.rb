@@ -24,7 +24,7 @@ class UserMailer < ApplicationMailer
         @url  = 'http://projet_chatons/login' 
     
         # c'est cet appel à mail() qui permet d'envoyer l’e-mail en définissant destinataire et sujet.
-        mail(to: @user.email, subject: "Merci pour votre achat N° #{@order.id} !") 
+        mail(to: @user.email, subject: "Merci pour votre achat !") 
  
 
       end
