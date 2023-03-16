@@ -23,8 +23,16 @@ class CheckoutController < ApplicationController
   end
 
   def success
+    @user = current_user
+    @cart = Cart.find_by(user_id: @user.id)
     @session = Stripe::Checkout::Session.retrieve(params[:session_id])
     @payment_intent = Stripe::PaymentIntent.retrieve(@session.payment_intent)
+
+    @order = Order.create!(user_id: @user.id)
+    @order.fill_order(@cart)
+    
+    @cart.selections.destroy_all
+    #il faut finir de compléter le Order et vider le panier
   end
 
   def cancel
