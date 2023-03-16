@@ -1,20 +1,18 @@
-<li href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3">
+<li class="list-group-item list-group-item-action d-flex gap-3 py-3">
   <img src="<%= photo.image_url %>" alt="<%= photo.title %>" class="rounded w-25 img-fluid">
-  <div class="d-flex gap-2 w-100 justify-content-between">
+  <div class="d-flex gap-3 w-100 justify-content-around">
     <div class="d-flex justify-content-between flex-column">
-    <div>
-      <h6 class="mb-0"><%= photo.title %></h6>
-      <p class="mb-0 opacity-75"><%= photo.description %></p>
+      <div class="text-start">
+        <h6 class="mb-0"><%= photo.title %></h6>
+        <p class="mb-0 opacity-75"><%= photo.description %></p>
+      </div>
     </div>
-    <div class="btn-group">
-      <%= link_to photo_path(id: photo.id), class: "btn btn-sm btn-outline-primary" do %>
-        <%= render "/shared/buttons/view" %>
-      <% end %>
-      <%= link_to photo_path(id: photo.id), data:{turbo_method: :delete}, class: "btn btn-sm btn-outline-primary" do %>
-        <%= render "/shared/buttons/delete" %>
-      <% end %>
-    </div>
-    </div>
-    <small class="opacity-50 text-nowrap"><%= photo.price %>&nbsp;€</small>
+    <small class="opacity-50 text-nowrap"><%= number_to_currency(photo.price, unit: "€", separator: ",", delimiter: " ", format: "%n %u") %></small>
+    <%= link_to photo_path(id: photo.id), class: "btn btn-sm btn-outline-primary align-self-start" do %>
+      <%= render "/shared/buttons/view" %>
+    <% end %>
+    <%= button_to photo_path(id: photo.id), data:{turbo_method: :delete}, class: "btn btn-sm btn-outline-secondary" do %>
+      <%= render "/shared/buttons/delete" %>
+    <% end %>
   </div>
 </li>

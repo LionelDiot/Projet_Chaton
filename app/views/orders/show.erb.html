@@ -1,0 +1,8 @@
+<h1> Ma commande du 15/02/2023 </h1>
+<div class="container d-flex flex-column justify-content-start align-items-center">
+  <% if @order.photos.any? %>
+    <%= render @order %>
+  <% else %>
+    <%= render "empty_order" %>
+  <% end %>
+</div>

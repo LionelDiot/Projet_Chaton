@@ -38,7 +38,7 @@
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Mon compte</a>
           <div class="dropdown-menu">
-            <%= link_to "Mon profil",
+            <%= link_to "Mes commandes",
             user_path(current_user),
             class: "dropdown-item #{'active' if current_page? user_path(current_user) }" %>
             <%= link_to "Modifier mes informations",
