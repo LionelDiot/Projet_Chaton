@@ -19,20 +19,8 @@ ActiveRecord::Base.connection.execute("ALTER SEQUENCE photos_id_seq RESTART WITH
 ActiveRecord::Base.connection.execute("ALTER SEQUENCE users_id_seq RESTART WITH 1")
 
 
-users = []
-2.times do |i|
-  users << User.create!(
-    email: Faker::Internet.unique.email,
-    first_name: Faker::Name.first_name,
-    last_name: Faker::Name.last_name,
-    password: Faker::Internet.password
-  )
-  
-end
-puts users
-
 photos = []
-20.times do |i|
+40.times do |i|
   photos << Photo.create!(
     title: Faker::Commerce.product_name,
     description: Faker::Lorem.sentence,
@@ -44,11 +32,4 @@ end
 puts photos
 
 
-
-10.times do |i|
-  Selection.create!(
-    photo_id: Photo.all.sample.id,
-    cart_id: Cart.all.sample.id
-  )
-end
 puts "Seed réussi!"
