@@ -1,8 +1,9 @@
 class CartsController < ApplicationController
-  before_action :set_cart, only: %i[ show edit update destroy ]
+  before_action :set_cart, only: %i[ show edit update destroy add_to_cart]
   before_action :owner?, only: [:show, :destroy, :edit, :update]
   before_action :total_of_cart, only: [:show]
   before_action :authenticate_user, only: [:set]
+
   # GET /carts or /carts.json
   def index
     @carts = Cart.all
@@ -13,7 +14,6 @@ class CartsController < ApplicationController
     @photo = Photo.find(params[:id])
 
     if user_signed_in?
-      
       @cart.add_photo_to_cart(@photo)
       redirect_to photos_path, notice: "Photo ajoutée au panier"
     else
@@ -67,7 +67,7 @@ class CartsController < ApplicationController
   def update
     respond_to do |format|
       if @cart.update(cart_params)
-        format.html { redirect_to cart_url(@cart), notice: "Cart was successfully updated." }
+        format.html { redirect_to cart_url(@cart), flash: { success: "Votre panier a été mis à jour." } }
         format.json { render :show, status: :ok, location: @cart }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -81,7 +81,7 @@ class CartsController < ApplicationController
     @cart.destroy
 
     respond_to do |format|
-      format.html { redirect_to carts_url, notice: "Cart was successfully destroyed." }
+      format.html { redirect_to carts_url, flash: { success: "La photo a été supprimée de votre panier." } }
       format.json { head :no_content }
     end
   end
@@ -89,7 +89,7 @@ class CartsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_cart
-      @cart = Cart.find_by(id: params[:id])
+      @cart = Cart.find_or_create_by(user_id: current_user.id)
     end
 
     # Only allow a list of trusted parameters through.
