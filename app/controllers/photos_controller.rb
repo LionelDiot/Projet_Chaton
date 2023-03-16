@@ -6,6 +6,13 @@ class PhotosController < ApplicationController
     @photos = Photo.all
   end
 
+  def delete_photo
+    @cart = Cart.find_or_create_by(user_id: current_user.id)
+    @photo = Photo.find(params[:id])
+    @cart.selections.where(photo_id: params[:id]).first.delete
+    redirect_to cart_path(current_user.cart), notice: "Votre photo #{@photo.title} est supprimé de votre panier."
+  end
+
   # GET /photos/1 or /photos/1.json
   def show
     @photo = Photo.find(params[:id])
