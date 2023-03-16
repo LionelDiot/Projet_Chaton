@@ -8,7 +8,4 @@ class Cart < ApplicationRecord
     self.photos << photo
   end
   
-
-
-
 end
