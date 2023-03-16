@@ -13,39 +13,23 @@ Cart.destroy_all
 Photo.destroy_all
 User.destroy_all
 
-users = []
-10.times do |i|
-  users << User.create!(
-    email: Faker::Internet.unique.email,
-    first_name: Faker::Name.first_name,
-    last_name: Faker::Name.last_name,
-    password: Faker::Internet.password
-  )
-end
-puts users
+ActiveRecord::Base.connection.execute("ALTER SEQUENCE selections_id_seq RESTART WITH 1")
+ActiveRecord::Base.connection.execute("ALTER SEQUENCE carts_id_seq RESTART WITH 1")
+ActiveRecord::Base.connection.execute("ALTER SEQUENCE photos_id_seq RESTART WITH 1")
+ActiveRecord::Base.connection.execute("ALTER SEQUENCE users_id_seq RESTART WITH 1")
+
 
 photos = []
-20.times do |i|
+40.times do |i|
   photos << Photo.create!(
     title: Faker::Commerce.product_name,
     description: Faker::Lorem.sentence,
-    image_url: "https://loremflickr.com/800/400/cats?random=#{rand(1..1000)}",
+    image_url: "https://loremflickr.com/320/240?lock=#{rand(1..1000)}",
     dimension: Faker::Number.between(from: 10, to: 100).to_s + " x " + Faker::Number.between(from: 10, to: 100).to_s,
     price: Faker::Commerce.price
   )
 end
 puts photos
 
-3.times do |i|
-  Cart.create!(
-    user_id: User.all.sample.id
-  )
-end
 
-10.times do |i|
-  Selection.create!(
-    photo_id: Photo.all.sample.id,
-    cart_id: Cart.all.sample.id
-  )
-end
 puts "Seed réussi!"

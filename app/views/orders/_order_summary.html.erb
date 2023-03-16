@@ -1,0 +1,7 @@
+<li class="list-group-item d-flex gap-5 py-3 justify-content-between">
+  <h6 class="mb-0">Commande du <%= order.created_at.to_date %></h6>
+  <strong class="text-nowrap"><%= number_to_currency(order.total, unit: "€", separator: ",", delimiter: "", format: "%n %u") %></strong>
+  <%= link_to order_path, class: "btn btn-sm btn-outline-primary  align-self-start" do %>
+    <%= render "/shared/buttons/view" %>
+  <% end %>
+</li>

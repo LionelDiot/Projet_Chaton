@@ -1,5 +1,5 @@
 require_relative "boot"
-
+require 'dotenv/load'
 require "rails/all"
 
 # Require the gems listed in Gemfile, including any gems
@@ -20,3 +20,4 @@ module BoutiqueChaton
     # config.eager_load_paths << Rails.root.join("extras")
   end
 end
+

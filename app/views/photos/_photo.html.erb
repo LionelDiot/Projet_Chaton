@@ -1,21 +1,6 @@
-<div id="photos" class="col">
-  <div id="<%= dom_id photo %>" class="card">
-    <img src="<%= photo.image_url %>" alt="<%= photo.title %>" class="card-img-top">
-    <div class="card-body">
-      <h5 class="card-title"><%= photo.title %></h5>
-      <p class="card-text"><%= photo.description %></p>
-      <p class="card-text"></p>
-      <div class="d-flex justify-content-between align-items-center">
-        <strong class="text-secondary"><%= photo.price %>&nbsp;€</strong>
-        <div class="btn-group">
-        <%= link_to root_path, class: "btn btn-sm btn-outline-primary" do %>
-          <%= render "/shared/buttons/view" %>
-        <% end %>
-        <%= link_to root_path, class: "btn btn-sm btn-outline-primary" do %>
-          <%= render "/shared/buttons/add_to_cart" %>
-        <% end %>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+
+<h1 class="h2 mt-5"><%= photo.title %></h1>
+<img src="<%= photo.image_url %>" alt="<%= photo.title %>" class="rounded img-fluid w-50 my-5">
+<p><%= photo.description %></p>
+<strong class="text-secondary"><%= photo.price %>&nbsp;€</strong>
+

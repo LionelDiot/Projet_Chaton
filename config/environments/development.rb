@@ -1,4 +1,6 @@
 require "active_support/core_ext/integer/time"
+require 'dotenv'
+Dotenv.load('.env')
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
@@ -68,4 +70,18 @@ Rails.application.configure do
 
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
+
+  #config.action_mailer.delivery_method = :letter_opener
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :user_name => ENV['SENDGRID_LOGIN'],
+    :password => ENV['SENDGRID_PWD'],
+    :domain => 'projet_chatons.com',
+    :address => 'smtp.sendgrid.net',
+    :port => 587,
+    :authentication => :plain,
+    :enable_starttls_auto => true
+  }
+
+  config.action_mailer.perform_deliveries = true
 end

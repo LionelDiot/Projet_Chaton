@@ -1,10 +1,7 @@
-<p style="color: green"><%= notice %></p>
-
-<%= render @cart %>
-
-<div>
-  <%= link_to "Edit this cart", edit_cart_path(@cart) %> |
-  <%= link_to "Back to carts", carts_path %>
-
-  <%= button_to "Destroy this cart", @cart, method: :delete %>
+<div class="container d-flex flex-column justify-content-start align-items-center">
+  <% if @cart.photos.any? %>
+    <%= render @cart %>
+  <% else %>
+    <%= render "empty_cart" %>
+  <% end %>
 </div>

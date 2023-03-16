@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[ show edit update destroy ]
+  before_action :set_user, only: %i[ show edit update destroy owner? ]
+  before_action :owner?, only: [:destroy, :edit, :update]
 
   # GET /users or /users.json
   def index
@@ -60,11 +61,23 @@ class UsersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
-      @user = User.find(params[:id])
+      @user = User.find_by(id: params[:id])
+      unless @user
+        flash[:alert] = "User not found."
+        redirect_to root_path
+      end
     end
 
     # Only allow a list of trusted parameters through.
     def user_params
       params.require(:user).permit(:encrypted_password, :email, :first_name, :last_name, :cart_id)
+    end
+
+    def owner?
+      
+      unless (current_user == @user) && current_user
+        flash[:danger] = "Impossible vous n'êtes pas le propriétaire du compte !"
+        redirect_to "/"
+      end
     end
 end

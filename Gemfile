@@ -8,6 +8,14 @@ gem 'faker'
 gem 'rspec'
 gem 'dotenv'
 gem 'devise'
+gem 'stripe', "~> 5.53"
+
+group :development do
+  gem 'better_errors'
+  gem 'binding_of_caller'
+end
+
+
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.4", ">= 7.0.4.2"
@@ -68,6 +76,8 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+
+  gem 'letter_opener'
 end
 
 group :test do
