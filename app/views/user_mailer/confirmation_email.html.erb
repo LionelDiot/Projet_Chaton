@@ -7,15 +7,7 @@
   <body>
     <h1>Salut<%= @user.first_name %>, merci de ta commande !</h1>
     <p>
-      Voici ton achat du jour sur Projet-chatons ! <br><br>
-
-      <% @order.titles.each_with_index do |title, i| %>
-          <h3><%= @order.titles[i] %></h3>
-          <img src="<%= @order.urls[i] %>" alt="<%= @order.titles[i] %>" class="rounded w-25 img-fluid">
-          <br>
-        <% end %>
-
-
+      Voici ton achat du jour sur <%= @url %>
     </p>
     <p>
       N'hésite pas à revenir acheter d'autres photos... et autres goodies à venir !
