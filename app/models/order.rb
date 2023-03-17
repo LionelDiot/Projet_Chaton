@@ -3,7 +3,7 @@ class Order < ApplicationRecord
     has_many :selections
     has_many :photos, through: :selections
 
-    after_update :confirmation_user, :confirmation_admin
+    after_update 
 
     def confirmation_user
 
