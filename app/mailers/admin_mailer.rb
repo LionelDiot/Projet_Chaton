@@ -6,7 +6,7 @@ class AdminMailer < ApplicationMailer
         @order = order
     
         #on définit une variable @url qu'on utilisera dans la view d’e-mail
-        @url  = 'www.projet-chatons.herokuapp.com' 
+        @url  = 'http://projet_chatons/login' 
     
         # c'est cet appel à mail() qui permet d'envoyer l’e-mail en définissant destinataire et sujet.
         mail(to: 'jo_9085@hotmail.com', subject: 'Nouvelle commande sur le site') 
